@@ -18,13 +18,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp "*"
+php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp "@dev"
 ```
 
 or add
 
 ```
-"fabriziocaldarelli/yii2-vuejsapp": "*"
+"fabriziocaldarelli/yii2-vuejsapp": "@dev"
 ```
 
 to the require section of your `composer.json` file.

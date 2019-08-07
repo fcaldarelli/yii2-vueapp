@@ -1,0 +1,29 @@
+{
+    "name": "fabriziocaldarelli/yii2-vueapp",
+    "description": "A Vue.js helper for create Vue app in Yii2 without webpack or similar",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","vue"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Fabrizio Caldarelli",
+            "email": "fabriziocaldarelli@negusweb.it",
+            "homepage": "http://www.negusweb.it"
+        }
+    ],
+    "require": {
+        "npm-asset/vue": "^2.6",
+        "npm-asset/axios": "^0.19.0",
+        "npm-asset/moment": "^2.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "sfmobile\\vueapp\\": "src"
+        }
+    },   
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }    
+}

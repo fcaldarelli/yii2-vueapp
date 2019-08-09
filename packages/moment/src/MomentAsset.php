@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-namespace sfmobile\vueapp\assets;
+namespace sfmobile\vueapp\packages\moment;
 
 use yii\web\AssetBundle;
 

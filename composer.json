@@ -18,7 +18,9 @@
     },
     "autoload": {
         "psr-4": {
-            "sfmobile\\vueapp\\": "src"
+            "sfmobile\\vueapp\\": "src",
+            "sfmobile\\vueapp\\packages\\axios\\": "packages\\axios\\src",
+            "sfmobile\\vueapp\\packages\\moment\\": "packages\\moment\\src"
         }
     },   
     "extra": {

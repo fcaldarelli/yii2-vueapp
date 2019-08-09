@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-namespace sfmobile\vueapp\assets;
+namespace sfmobile\vueapp\packages\axios;
 
 use yii\web\AssetBundle;
 

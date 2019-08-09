@@ -10,8 +10,6 @@ namespace sfmobile\vueapp;
 use yii\base\Widget;
 use yii\helpers\Html;
 use sfmobile\vueapp\assets\VueAsset;
-use sfmobile\vueapp\assets\MomentAsset;
-use sfmobile\vueapp\assets\AxiosAsset;
 
 /**
  * Vue.js App 
@@ -25,8 +23,44 @@ class VueApp extends Widget
     public const PKG_AXIOS = 'axios';
     public const PKG_MOMENT = 'moment';
 
+    /**
+     * id of vue app
+     */
+    public $id = null;
+
+    /**
+     * tag of vue app container
+     */
+    public $tag = 'div';
+
+    /**
+     * add v-cloak options to tag vue app container
+     */
+    public $vCloak = true;    
+
+    /**
+     * props data to pass to js script
+     */
+    public $propsData = [];
+
+    /**
+     * other options appended to tag vue app container
+     */
+    public $options = [];
+
+    /**
+     * path of /js, /css and /tpl files
+     */
     public $contentsPath = null;
+
+    /**
+     * packages to load from assets
+     */
     public $packages = [ self::PKG_AXIOS ];
+
+    /**
+     * debug mode
+     */
     public $debug = false;
 
     private $jsFiles;
@@ -35,6 +69,11 @@ class VueApp extends Widget
 
     private function checkInit()
     {
+        if($this->id == null)
+        {
+            throw new \Exception("Missing 'id' parameter");
+        }
+
         if($this->contentsPath == null)
         {
             throw new \Exception("Missing contentsPath (usually __DIR__)");
@@ -51,6 +90,8 @@ class VueApp extends Widget
 
     public function init()
     {
+        parent::init();
+
         $this->jsFiles = [];
         $this->tplFiles = [];
         $this->cssFiles = [];
@@ -63,13 +104,15 @@ class VueApp extends Widget
 
         $this->checkInit();
 
-        if(in_array(self::PKG_AXIOS, $this->packages)) AxiosAsset::register($this->view);
-        if(in_array(self::PKG_MOMENT, $this->packages)) MomentAsset::register($this->view);
+        // Load packages
+        if(in_array(self::PKG_AXIOS, $this->packages)) \sfmobile\vueapp\packages\axios\AxiosAsset::register($this->view);
+        if(in_array(self::PKG_MOMENT, $this->packages)) \sfmobile\vueapp\packages\moment\MomentAsset::register($this->view);
 
         VueAsset::register($this->view);
 
         $this->loadFilesContentsPath();
 
+        ob_start();
     }
 
     public function run()
@@ -95,6 +138,23 @@ class VueApp extends Widget
             $tplContent = $this->view->render($tplFile);
             $outContent .= Html::tag('script', $tplContent, ['type' => 'text/x-template', 'id' => $tplName]);
         }
+
+        // Get inside widget content, between begin() ... end() method
+        $insideWidgetContent = ob_get_clean();
+
+        // Add options to html tag
+        $htmlTagOptions = ['id' => $this->id];
+        foreach($this->propsData as $key => $val)
+        {
+            $htmlTagOptions[\yii\helpers\Inflector::camel2id($key)] = $val;
+        }
+        if($this->vCloak) $htmlTagOptions['v-cloak'] = '';
+        $htmlTagOptions = array_merge($htmlTagOptions, $this->options);
+
+        // Fill output content
+        $outContent .= Html::beginTag($this->tag, $htmlTagOptions);
+        $outContent .= $insideWidgetContent;     
+        $outContent .= Html::endTag($this->tag);
 
         return $outContent;
     }

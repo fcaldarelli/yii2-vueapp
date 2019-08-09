@@ -2,11 +2,6 @@
 
 use \sfmobile\vueapp\VueApp;
 
-
-?>
-
-
-<?php 
 /*
 - Css files are automatically loaded from vueapp/test/css/
 - Template files are automatically loaded from vueapp/test/tpl/
@@ -15,7 +10,7 @@ use \sfmobile\vueapp\VueApp;
 
 To pass data from php/html to js vue app we defined propsApp attribute data in VueApp configuration and the we fill in html converting from camel case to dash
 */
-?>
+
 VueApp::begin([
     'id' => 'vueAppTest',
     'propsData' => [

@@ -29,6 +29,20 @@ or add
 
 to the require section of your `composer.json` file.
 
+How it works
+------------
+
+This component injects js, css and tpl (php or html) files into the returned html.
+
+These files are read starting from same folder of action view file, appending vueapp/*actionName*/js or vueapp/*actionName*/css or vueapp/*actionName*/tpl
+
+VueApp::begin mainly supports three parameters:
+
+- id: vue app html tag id selector;
+- propsData: widget uses this element to pass data from html/php to js script;
+- packages: list of packages that should be loaded into js vue script
+
+**Pay attention**: *propsData* keys have the same name (and same case) in php and in js file.
 
 Usage
 -----

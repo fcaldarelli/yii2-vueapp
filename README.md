@@ -169,6 +169,7 @@ For example, the path for main vue app css could be vueapp/test/css/test.css
 Tips & Tricks
 -----
 
+<h2>1. Pass data from html/php to js</h2>
 To pass data from html/php to js vue app, I used an attribute called propsApp, whithin are defined attributes passed in html root element.
 
 For example, html root element "vueAppTest":
@@ -221,3 +222,9 @@ var vueAppTest = new Vue({
     }
 }
 ```
+
+<h2>2. Component registration</h2>
+
+JS files loading order is important when the app js file depends from other js files.
+
+So, I suggest to prefix all component files with '_' or suffix with '.component.' in order to load component js files firstly.

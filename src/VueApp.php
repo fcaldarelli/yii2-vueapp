@@ -133,9 +133,9 @@ class VueApp extends Widget
 
         // Prepare template files
         foreach ($this->tplFiles as $tplFile) {
-            $tplName = basename($tplFile);
+            $tplName = pathinfo($tplFile, PATHINFO_FILENAME);
 
-            $tplContent = $this->view->render($tplFile);
+            $tplContent = $this->view->renderFile($tplFile);
             $outContent .= Html::tag('script', $tplContent, ['type' => 'text/x-template', 'id' => $tplName]);
         }
 

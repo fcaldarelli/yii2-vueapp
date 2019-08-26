@@ -20,8 +20,8 @@ use sfmobile\vueapp\assets\VueAsset;
  */
 class VueApp extends Widget
 {
-    public const PKG_AXIOS = 'axios';
-    public const PKG_MOMENT = 'moment';
+    const PKG_AXIOS = 'axios';
+    const PKG_MOMENT = 'moment';
 
     /**
      * id of vue app

@@ -14,15 +14,23 @@
     "require": {
         "npm-asset/vue": "^2.6",
         "npm-asset/axios": "^0.19.0",
-        "npm-asset/moment": "^2.24"
+        "npm-asset/moment": "^2.24",
+        "npm-asset/vuejs-datepicker": "^1.6"
     },
     "autoload": {
         "psr-4": {
             "sfmobile\\vueapp\\": "src",
             "sfmobile\\vueapp\\packages\\axios\\": "packages\\axios\\src",
-            "sfmobile\\vueapp\\packages\\moment\\": "packages\\moment\\src"
+            "sfmobile\\vueapp\\packages\\moment\\": "packages\\moment\\src",
+            "sfmobile\\vueapp\\packages\\vuejs_datepicker\\": "packages\\vuejs_datepicker\\src"
         }
     },   
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],    
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

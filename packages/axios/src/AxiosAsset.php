@@ -16,8 +16,10 @@ use yii\web\AssetBundle;
  */
 class AxiosAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/npm-asset/axios';
-    public $js = [
-        'dist/axios.min.js',
-    ];
+    public $sourcePath = '@vendor/npm-asset/axios/dist';
+    public function init()
+    {
+        parent::init();
+        $this->js[] = YII_DEBUG ? 'axios.js' : 'axios.min.js';
+    }     
 }

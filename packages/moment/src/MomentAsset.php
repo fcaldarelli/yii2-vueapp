@@ -20,6 +20,6 @@ class MomentAsset extends AssetBundle
     public function init()
     {
         parent::init();
-        $this->js[] = YII_DEBUG ? 'min/moment.min.js' : 'moment.js';
+        $this->js[] = YII_DEBUG ? 'moment.js' : 'min/moment.min.js';
     }    
 }

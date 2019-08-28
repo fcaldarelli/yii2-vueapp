@@ -16,12 +16,13 @@ use sfmobile\vueapp\assets\VueAsset;
  * @author Fabrizio Caldarelli
  * @since 2.0
  * 
- * Content files are in vuejs/<actionName>/js, vuejs/<actionName>/tpl, vuejs/<actionName>/css folders
+ * Content files are in vueapp/<actionName>/js, vueapp/<actionName>/tpl, vueapp/<actionName>/css folders
  */
 class VueApp extends Widget
 {
     const PKG_AXIOS = 'axios';
     const PKG_MOMENT = 'moment';
+    const PKG_VUEJS_DATEPICKER = 'vuejs_datepicker';
 
     /**
      * id of vue app
@@ -54,6 +55,21 @@ class VueApp extends Widget
     public $contentsPath = null;
 
     /**
+     * js files passed from user
+     */
+    public $jsFiles = [];
+
+    /**
+     * css files passed from user
+     */
+    public $cssFiles = [];
+
+    /**
+     * tpl files passed from user
+     */
+    public $tplFiles = [];
+
+    /**
      * packages to load from assets
      */
     public $packages = [ self::PKG_AXIOS ];
@@ -63,9 +79,20 @@ class VueApp extends Widget
      */
     public $debug = false;
 
-    private $jsFiles;
-    private $tplFiles;
-    private $cssFiles;
+    /**
+     * js files from contents path
+     */
+    private $contentsPathJsFiles = null;
+
+    /**
+     * tpl files from contents path
+     */
+    private $contentsPathTplFiles = null;
+
+    /**
+     * css files from contents path
+     */
+    private $contentsPathCssFiles = null;
 
     private function checkInit()
     {
@@ -92,10 +119,6 @@ class VueApp extends Widget
     {
         parent::init();
 
-        $this->jsFiles = [];
-        $this->tplFiles = [];
-        $this->cssFiles = [];
-
         if($this->contentsPath == null) 
         {
             $folderName = basename($this->view->viewFile, '.php');
@@ -107,6 +130,7 @@ class VueApp extends Widget
         // Load packages
         if(in_array(self::PKG_AXIOS, $this->packages)) \sfmobile\vueapp\packages\axios\AxiosAsset::register($this->view);
         if(in_array(self::PKG_MOMENT, $this->packages)) \sfmobile\vueapp\packages\moment\MomentAsset::register($this->view);
+        if(in_array(self::PKG_VUEJS_DATEPICKER, $this->packages)) \sfmobile\vueapp\packages\vuejs_datepicker\VueJsDatepickerAsset::register($this->view);
 
         VueAsset::register($this->view);
 
@@ -121,7 +145,11 @@ class VueApp extends Widget
 
         // Prepare js files
         foreach ($this->jsFiles as $jsFile) {
-            $jsContent = file_get_contents(\Yii::getAlias($jsFile));
+            $jsContent = $this->replaceJsTokens(file_get_contents(\Yii::getAlias($jsFile)));
+            $this->view->registerJs($jsContent);
+        }
+        foreach ($this->contentsPathJsFiles as $jsFile) {
+            $jsContent = $this->replaceJsTokens(file_get_contents(\Yii::getAlias($jsFile)));
             $this->view->registerJs($jsContent);
         }
 
@@ -130,9 +158,19 @@ class VueApp extends Widget
             $cssContent = file_get_contents(\Yii::getAlias($cssFile));
             $this->view->registerCss($cssContent);
         }
+        foreach ($this->contentsPathCssFiles as $cssFile) {
+            $cssContent = file_get_contents(\Yii::getAlias($cssFile));
+            $this->view->registerCss($cssContent);
+        }
 
         // Prepare template files
         foreach ($this->tplFiles as $tplFile) {
+            $tplName = pathinfo($tplFile, PATHINFO_FILENAME);
+
+            $tplContent = $this->view->renderFile($tplFile);
+            $outContent .= Html::tag('script', $tplContent, ['type' => 'text/x-template', 'id' => $tplName]);
+        }
+        foreach ($this->contentsPathTplFiles as $tplFile) {
             $tplName = pathinfo($tplFile, PATHINFO_FILENAME);
 
             $tplContent = $this->view->renderFile($tplFile);
@@ -159,6 +197,17 @@ class VueApp extends Widget
         return $outContent;
     }
 
+    /**
+     * Replace all tokens occurrences in js files
+     * Token:
+     *    ___VUE_APP_ID___ : app id
+     */
+    private function replaceJsTokens($content)
+    {
+        $content = str_replace('___VUEAPP_APP_ID___', $this->id, $content);
+        return $content;
+    }
+
     private function loadFilesContentsPath()
     {
         if($this->contentsPath != null)
@@ -166,11 +215,11 @@ class VueApp extends Widget
             $basePath = \Yii::getAlias($this->contentsPath);
 
             $jsPath = $basePath.'/js';
-            $this->jsFiles = $this->loadFilesFromPath($jsPath);
+            $this->contentsPathJsFiles = $this->loadFilesFromPath($jsPath);
             $tplPath = $basePath.'/tpl';
-            $this->tplFiles = $this->loadFilesFromPath($tplPath);
+            $this->contentsPathTplFiles = $this->loadFilesFromPath($tplPath);
             $cssPath = $basePath.'/css';
-            $this->cssFiles = $this->loadFilesFromPath($cssPath);
+            $this->contentsPathCssFiles = $this->loadFilesFromPath($cssPath);
         }
     }
 

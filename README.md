@@ -71,6 +71,10 @@ VueApp::begin([
         'kParam2' => 'value_2',
         'kParam3' => 'value_3',
     ],
+    'jsFiles' => [ ... ],    // list of other js files, that have precedente over js contents path files
+    'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
+    'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
+
     'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT]
 ]);
 ?>
@@ -95,8 +99,8 @@ For example, the path for main vue app js could be vueapp/test/js/test.js
 
 ```js
 
-var vueAppTest = new Vue({
-    el: '#vueAppTest',
+var ___VUEAPP_APP_ID___ = new Vue({
+    el: '#___VUEAPP_APP_ID___',
     data: {
 
         /**

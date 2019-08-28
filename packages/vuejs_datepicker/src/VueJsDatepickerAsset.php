@@ -10,7 +10,7 @@ namespace sfmobile\vueapp\packages\vuejs_datepicker;
 use yii\web\AssetBundle;
 
 /**
- * Moment asset bundle
+ * VueJs Datepicker asset bundle
  * @author Fabrizio Caldarelli
  * @since 1.0
  */

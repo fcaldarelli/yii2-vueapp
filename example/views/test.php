@@ -17,8 +17,14 @@ VueApp::begin([
         'kParam1' => 'value_1',
         'kParam2' => 'value_2',
         'kParam3' => 'value_3',
+        'kParamObj' => ['a' => 10],
     ],
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT]
+    /*
+    'jsFiles' => [ ... ],    // list of other js files, that have precedente over js contents path files
+    'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
+    'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
+    */
+    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER]
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}
@@ -26,6 +32,11 @@ VueApp::begin([
     kParam2: {{ propsApp.kParam2 }}
     <br />
     kParam3: {{ propsApp.kParam3 }}
+    <br />
+    kParamObj: {{ propsApp.kParamObj ? propsApp.kParamObj.a : null }}
+    <br />
+    <!-- Refer to https://github.com/charliekassel/vuejs-datepicker -->
+    <vuejs-datepicker></vuejs-datepicker>
     <br />
     clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
 

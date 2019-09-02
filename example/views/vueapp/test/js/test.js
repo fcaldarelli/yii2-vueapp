@@ -1,6 +1,13 @@
+var ___VUEAPP_APP_ID___ = new Vue({
+    el: '#___VUEAPP_APP_ID___',
 
-var vueAppTest = new Vue({
-    el: '#vueAppTest',
+    // If you need a date picker,
+    // add VueApp::PKG_VUEJS_DATEPICKER to 'packages' VueApp widget config
+    // Refer to https://github.com/charliekassel/vuejs-datepicker
+    components: {
+        vuejsDatepicker
+    },
+
     data: {
 
         /**
@@ -12,6 +19,7 @@ var vueAppTest = new Vue({
             kParam1: null,
             kParam2: null,
             kParam3: null,
+            kParamObj: null,
         },
 
         clock_datetime: null
@@ -26,6 +34,9 @@ var vueAppTest = new Vue({
     mounted() {
         this.readPropsApp();
 
+        // Because kParamObj is an object, we have to parse to serialized version of kParamObj
+        this.propsApp.kParamObj = JSON.parse(this.propsApp.kParamObj);
+
         this.loadAtomicClock();
     },
 
@@ -33,7 +44,13 @@ var vueAppTest = new Vue({
 
         readPropsApp: function () {
             for (var k in this.propsApp) {
-                var attr = k.replace(/[A-Z|0-9]/g, m => "-" + m.toLowerCase());
+
+                // Taken from: https://github.com/sindresorhus/decamelize/blob/master/index.js
+                var attr = k
+                    .replace(/([\p{Lowercase_Letter}\d])(\p{Uppercase_Letter})/gu, `$1-$2`)
+                    .replace(/(\p{Lowercase_Letter}+)(\p{Uppercase_Letter}[\p{Lowercase_Letter}\d]+)/gu, `$1-$2`)
+                    .toLowerCase();
+
                 console.log(k, attr);
                 if (this.$el.attributes[attr] != undefined) {
                     this.propsApp[k] = this.$el.attributes[attr].value;

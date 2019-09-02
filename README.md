@@ -70,12 +70,14 @@ VueApp::begin([
         'kParam1' => 'value_1',
         'kParam2' => 'value_2',
         'kParam3' => 'value_3',
+        'kParamObj' => ['a' => 10],
     ],
+    /*
     'jsFiles' => [ ... ],    // list of other js files, that have precedente over js contents path files
     'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
-
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT]
+    */
+    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER]
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}
@@ -84,9 +86,14 @@ VueApp::begin([
     <br />
     kParam3: {{ propsApp.kParam3 }}
     <br />
+    kParamObj: {{ propsApp.kParamObj ? propsApp.kParamObj.a : null }}
+    <br />
+    <!-- Refer to https://github.com/charliekassel/vuejs-datepicker -->
+    <vuejs-datepicker></vuejs-datepicker>
+    <br />
     clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
 
-<?php VueApp::end(); ?>
+<?php VueApp::end(); 
 ```
 
 The most important parameter is packages that loads embedded packages such as Axios and Moment.
@@ -98,9 +105,16 @@ Starting from view path folder, js files for app and components are in vueapp/te
 For example, the path for main vue app js could be vueapp/test/js/test.js
 
 ```js
-
 var ___VUEAPP_APP_ID___ = new Vue({
     el: '#___VUEAPP_APP_ID___',
+
+    // If you need a date picker,
+    // add VueApp::PKG_VUEJS_DATEPICKER to 'packages' VueApp widget config
+    // Refer to https://github.com/charliekassel/vuejs-datepicker
+    components: {
+        vuejsDatepicker
+    },
+
     data: {
 
         /**
@@ -112,6 +126,7 @@ var ___VUEAPP_APP_ID___ = new Vue({
             kParam1: null,
             kParam2: null,
             kParam3: null,
+            kParamObj: null,
         },
 
         clock_datetime: null
@@ -126,6 +141,9 @@ var ___VUEAPP_APP_ID___ = new Vue({
     mounted() {
         this.readPropsApp();
 
+        // Because kParamObj is an object, we have to parse to serialized version of kParamObj
+        this.propsApp.kParamObj = JSON.parse(this.propsApp.kParamObj);
+
         this.loadAtomicClock();
     },
 
@@ -133,7 +151,13 @@ var ___VUEAPP_APP_ID___ = new Vue({
 
         readPropsApp: function () {
             for (var k in this.propsApp) {
-                var attr = k.replace(/[A-Z|0-9]/g, m => "-" + m.toLowerCase());
+
+                // Taken from: https://github.com/sindresorhus/decamelize/blob/master/index.js
+                var attr = k
+                    .replace(/([\p{Lowercase_Letter}\d])(\p{Uppercase_Letter})/gu, `$1-$2`)
+                    .replace(/(\p{Lowercase_Letter}+)(\p{Uppercase_Letter}[\p{Lowercase_Letter}\d]+)/gu, `$1-$2`)
+                    .toLowerCase();
+
                 console.log(k, attr);
                 if (this.$el.attributes[attr] != undefined) {
                     this.propsApp[k] = this.$el.attributes[attr].value;
@@ -232,3 +256,19 @@ var vueAppTest = new Vue({
 JS files loading order is important when the app js file depends from other js files.
 
 So, I suggest to prefix all component files with '_' or suffix with '.component.' in order to load component js files firstly.
+
+<h2>3. Pass object data from html/php to js</h2>
+Passing objects/array from html/php to js is the same of primitive dat (Tips and triks #1).
+
+The only different thing is that in mounted() function you need to parse json string to the object.
+
+So, if kObject is the object passed from php, mounted() method will be:
+
+```js
+mounted() {
+    this.readPropsApp();
+
+    // Because kParamObj is an object, we have to parse to serialized version of kParamObj
+    this.propsApp.kParamObj = JSON.parse(this.propsApp.kParamObj);
+},
+```

@@ -5,6 +5,23 @@ use sfmobile\vueapp\VueApp;
 
 class ExampleTest extends TestCase
 {
+    public function setUp()
+    {
+        // Change hashCallback to get the same results within different basePath environment 
+        $this->mockWebApplication([
+            'components' => [
+                'assetManager' => [
+                    'class' => \yii\web\AssetManager::class,
+                    'hashCallback' => function ($path) {
+                        $basePath = realpath(\Yii::$app->basePath . '/../');
+                        $path = str_replace($basePath, '', $path);
+                        return hash('md5', $path);
+                    }
+                ]
+            ]
+        ]);        
+    }
+
     /**
      * Example without using render. Property 'contentsPath' is passed to the widget
      */
@@ -96,10 +113,10 @@ kParamObj: {{ propsApp.kParamObj ? propsApp.kParamObj.a : null }}
 <br />
 clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
 
-</div><script src="/assets/892e541/axios.js"></script>
-<script src="/assets/fe7e6880/moment.js"></script>
-<script src="/assets/ee4b9de1/vuejs-datepicker.js"></script>
-<script src="/assets/76f6422c/dist/vue.js"></script>
+</div><script src="/assets/790eb809b6a96181a6e235d55bf53420/axios.js"></script>
+<script src="/assets/87cde7a615738f07989c6f6df2e80f3d/moment.js"></script>
+<script src="/assets/02cfdb972ec2474569609e6873b39041/vuejs-datepicker.js"></script>
+<script src="/assets/d3d07862364b27932d4b7115e514d288/dist/vue.js"></script>
 <script>var vueAppTest = new Vue({
     el: '#vueAppTest',
 

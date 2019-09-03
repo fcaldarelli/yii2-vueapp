@@ -64,7 +64,7 @@ clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
 </div>
 HTML;
 
-        $this->assertContains($expected, $out);
+        $this->assertEqualsWithoutLE($expected, $out);
 
         $this->removeMockedAction();
     }
@@ -176,9 +176,10 @@ clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
     }
 })</script></body>
 </html>
+
 HTML;
 
-        $this->assertContains($expected, $out);
+        $this->assertEqualsWithoutLE($expected, $out);
 
         $this->removeMockedAction();
 

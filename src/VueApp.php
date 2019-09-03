@@ -146,11 +146,11 @@ class VueApp extends Widget
         // Prepare js files
         foreach ($this->jsFiles as $jsFile) {
             $jsContent = $this->replaceJsTokens(file_get_contents(\Yii::getAlias($jsFile)));
-            $this->view->registerJs($jsContent);
+            $this->view->registerJs($jsContent, \yii\web\View::POS_END);
         }
         foreach ($this->contentsPathJsFiles as $jsFile) {
             $jsContent = $this->replaceJsTokens(file_get_contents(\Yii::getAlias($jsFile)));
-            $this->view->registerJs($jsContent);
+            $this->view->registerJs($jsContent, \yii\web\View::POS_END);
         }
 
         // Prepare css files

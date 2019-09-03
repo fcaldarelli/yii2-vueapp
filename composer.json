@@ -17,6 +17,11 @@
         "npm-asset/moment": "^2.24",
         "npm-asset/vuejs-datepicker": "^1.6"
     },
+    "require-dev": {
+        "yiisoft/yii2": "~2.0",
+        "yiisoft/yii2-coding-standards": "~2.0",
+        "phpunit/phpunit": "<7"
+    },    
     "autoload": {
         "psr-4": {
             "sfmobile\\vueapp\\": "src",
@@ -25,6 +30,11 @@
             "sfmobile\\vueapp\\packages\\vuejs_datepicker\\": "packages\\vuejs_datepicker\\src"
         }
     },   
+    "autoload-dev": {
+        "psr-4": {
+            "sfmobile_unit\\vueapp\\": "tests"
+        }
+    },    
     "repositories": [
         {
             "type": "composer",

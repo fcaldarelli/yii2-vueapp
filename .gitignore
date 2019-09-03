@@ -30,3 +30,4 @@ phpunit.phar
 # phpunit cache
 .phpunit.result.cache
 
+/tests/assets

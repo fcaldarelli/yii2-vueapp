@@ -78,8 +78,6 @@ HTML;
         $this->mockAction('site', 'example1');
         $out = \Yii::$app->controller->render('example1');
 
-        echo $out;
-
         $expected = <<<'HTML'
 <html>
 <head>

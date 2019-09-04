@@ -1,6 +1,10 @@
 Vue.js helper for Yii2
 =====================
 
+[![Latest Stable Version](https://poser.pugx.org/fabriziocaldarelli/yii2-vueapp/v/stable)](https://packagist.org/packages/fabriziocaldarelli/yii2-vueapp)
+[![Total Downloads](https://poser.pugx.org/fabriziocaldarelli/yii2-vueapp/downloads)](https://packagist.org/packages/fabriziocaldarelli/yii2-vueapp)
+[![Build Status](https://travis-ci.org/FabrizioCaldarelli/yii2-vueapp.svg?branch=master)](https://travis-ci.org/FabrizioCaldarelli/yii2-vueapp)
+
 This is a component that helps to create Vue.js app without usign webpack or similar.
 
 All assets (js, css and templates) are injected directly in the html and this components

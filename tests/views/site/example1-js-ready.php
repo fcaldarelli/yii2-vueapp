@@ -25,7 +25,6 @@ VueApp::begin([
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
     */
     'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER],
-    'positionJs' => \yii\web\View::POS_END
 ]);
 ?>
 kParam1: {{ propsApp.kParam1 }}

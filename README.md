@@ -81,7 +81,7 @@ VueApp::begin([
     'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
     */
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER]
+    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV]
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}
@@ -109,6 +109,11 @@ Starting from view path folder, js files for app and components are in vueapp/te
 For example, the path for main vue app js could be vueapp/test/js/test.js
 
 ```js
+
+// Uix package asset - To avoid conflits:
+// Vue.use(uiv, {prefix: 'uiv'}) : Components such as <alert> becomes <uiv-alert>
+
+
 var ___VUEAPP_APP_ID___ = new Vue({
     el: '#___VUEAPP_APP_ID___',
 

@@ -22,7 +22,7 @@ use yii\web\AssetBundle;
  */
 class UivAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/npm-asset/uiv';
+    public $sourcePath = '@vendor/npm-asset/uiv/dist';
     public function init()
     {
         parent::init();

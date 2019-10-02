@@ -117,6 +117,7 @@ clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
 </div><script src="/assets/790eb809b6a96181a6e235d55bf53420/axios.js"></script>
 <script src="/assets/87cde7a615738f07989c6f6df2e80f3d/moment.js"></script>
 <script src="/assets/02cfdb972ec2474569609e6873b39041/vuejs-datepicker.js"></script>
+<script src="/assets/0b9ccc409ab9a2024d63d1f04f706d0a/uiv.min.js"></script>
 <script src="/assets/d3d07862364b27932d4b7115e514d288/dist/vue.js"></script>
 <script>var vueAppTest = new Vue({
     el: '#vueAppTest',
@@ -234,6 +235,7 @@ clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
 </div><script src="/assets/790eb809b6a96181a6e235d55bf53420/axios.js"></script>
 <script src="/assets/87cde7a615738f07989c6f6df2e80f3d/moment.js"></script>
 <script src="/assets/02cfdb972ec2474569609e6873b39041/vuejs-datepicker.js"></script>
+<script src="/assets/0b9ccc409ab9a2024d63d1f04f706d0a/uiv.min.js"></script>
 <script src="/assets/d3d07862364b27932d4b7115e514d288/dist/vue.js"></script>
 <script src="/assets/5a3438f37681977d0304f15694a66f65/jquery.js"></script>
 <script>jQuery(function ($) {

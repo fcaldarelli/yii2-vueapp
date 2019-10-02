@@ -23,6 +23,7 @@ class VueApp extends Widget
     const PKG_AXIOS = 'axios';
     const PKG_MOMENT = 'moment';
     const PKG_VUEJS_DATEPICKER = 'vuejs_datepicker';
+    const PKG_UIV = 'uiv';
 
     /**
      * id of vue app
@@ -136,6 +137,7 @@ class VueApp extends Widget
         if(in_array(self::PKG_AXIOS, $this->packages)) \sfmobile\vueapp\packages\axios\AxiosAsset::register($this->view);
         if(in_array(self::PKG_MOMENT, $this->packages)) \sfmobile\vueapp\packages\moment\MomentAsset::register($this->view);
         if(in_array(self::PKG_VUEJS_DATEPICKER, $this->packages)) \sfmobile\vueapp\packages\vuejs_datepicker\VueJsDatepickerAsset::register($this->view);
+        if(in_array(self::PKG_UIV, $this->packages)) \sfmobile\vueapp\packages\uiv\UivAsset::register($this->view);
 
         VueAsset::register($this->view);
 

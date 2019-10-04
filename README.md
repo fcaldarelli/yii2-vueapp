@@ -28,7 +28,7 @@ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp "@dev"
 or add
 
 ```
-"fabriziocaldarelli/yii2-vuejsapp": "@dev"
+"fabriziocaldarelli/yii2-vueapp": "@dev"
 ```
 
 to the require section of your `composer.json` file.

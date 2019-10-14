@@ -40,5 +40,7 @@ kParamObj: {{ propsApp.kParamObj ? propsApp.kParamObj.a : null }}
 <vuejs-datepicker></vuejs-datepicker>
 <br />
 clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
+<br />
+<date-picker name="date" v-model="datePickerValue" :config="vueBootstrapDatetimePickerOptions"></date-picker>
 
 <?php VueApp::end(); ?>

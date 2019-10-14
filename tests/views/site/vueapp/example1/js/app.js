@@ -5,7 +5,8 @@ var ___VUEAPP_APP_ID___ = new Vue({
     // add VueApp::PKG_VUEJS_DATEPICKER to 'packages' VueApp widget config
     // Refer to https://github.com/charliekassel/vuejs-datepicker
     components: {
-        vuejsDatepicker
+        vuejsDatepicker,
+        "date-picker": VueBootstrapDatetimePicker
     },
 
     data: {

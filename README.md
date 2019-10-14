@@ -81,7 +81,7 @@ VueApp::begin([
     'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
     */
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV]
+    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV, VueApp::PKG_VUE_BOOTSTRAP_DATETIME_PICKER]
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}
@@ -96,6 +96,9 @@ VueApp::begin([
     <vuejs-datepicker></vuejs-datepicker>
     <br />
     clock datetime: {{ clock_datetime | formatDateTime('DD/MM/YYYY HH:mm') }}
+    <br />
+    <date-picker name="date" v-model="datePickerValue" :config="vueBootstrapDatetimePickerOptions"></date-picker>
+
 
 <?php VueApp::end(); 
 ```
@@ -121,7 +124,8 @@ var ___VUEAPP_APP_ID___ = new Vue({
     // add VueApp::PKG_VUEJS_DATEPICKER to 'packages' VueApp widget config
     // Refer to https://github.com/charliekassel/vuejs-datepicker
     components: {
-        vuejsDatepicker
+        vuejsDatepicker                                 // using VueJsDatePicker
+        "date-picker": VueBootstrapDatetimePicker       // using VueBootstrapDatetimePicker - https://github.com/ankurk91/vue-bootstrap-datetimepicker
     },
 
     data: {
@@ -138,7 +142,18 @@ var ___VUEAPP_APP_ID___ = new Vue({
             kParamObj: null,
         },
 
-        clock_datetime: null
+        clock_datetime: null,
+
+        datePickerValue: null,
+
+        vueBootstrapDatetimePickerOptions: {
+            // https://momentjs.com/docs/#/displaying/
+            format: "DD/MM/YYYY HH:mm",
+            locale: 'it',
+            useCurrent: false,
+            showClear: true,
+            showClose: true
+        }        
     },
 
     filters: {

@@ -16,7 +16,8 @@
         "npm-asset/axios": "^0.19.0",
         "npm-asset/moment": "^2.24",
         "npm-asset/vuejs-datepicker": "^1.6",
-        "npm-asset/uiv": "^0.32.2"
+        "npm-asset/uiv": "^0.32.2",
+        "npm-asset/vue-bootstrap-datetimepicker": "^5.0"
     },
     "require-dev": {
         "yiisoft/yii2": "~2.0",
@@ -29,7 +30,8 @@
             "sfmobile\\vueapp\\packages\\axios\\": "packages\\axios\\src",
             "sfmobile\\vueapp\\packages\\moment\\": "packages\\moment\\src",
             "sfmobile\\vueapp\\packages\\vuejs_datepicker\\": "packages\\vuejs_datepicker\\src",
-            "sfmobile\\vueapp\\packages\\uiv\\": "packages\\uiv\\src"
+            "sfmobile\\vueapp\\packages\\uiv\\": "packages\\uiv\\src",
+            "sfmobile\\vueapp\\packages\\vue_bootstrap_datetime_picker\\": "packages\\vue_bootstrap_datetime_picker\\src"
         }
     },   
     "autoload-dev": {

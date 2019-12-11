@@ -116,6 +116,8 @@ For example, the path for main vue app js could be vueapp/test/js/test.js
 // Uix package asset - To avoid conflits:
 // Vue.use(uiv, {prefix: 'uiv'}) : Components such as <alert> becomes <uiv-alert>
 
+// Vue Select asset - To avoid conflicts:
+// Vue.component('v-select', VueSelect.VueSelect);
 
 var ___VUEAPP_APP_ID___ = new Vue({
     el: '#___VUEAPP_APP_ID___',

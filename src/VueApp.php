@@ -25,6 +25,7 @@ class VueApp extends Widget
     const PKG_VUEJS_DATEPICKER = 'vuejs_datepicker';
     const PKG_UIV = 'uiv';
     const PKG_VUE_BOOTSTRAP_DATETIME_PICKER = 'vue_bootstrap_datetime_picker';
+    const PKG_VUE_SELECT = 'vue_select';
 
     /**
      * id of vue app
@@ -140,6 +141,7 @@ class VueApp extends Widget
         if(in_array(self::PKG_VUEJS_DATEPICKER, $this->packages)) \sfmobile\vueapp\packages\vuejs_datepicker\VueJsDatepickerAsset::register($this->view);
         if(in_array(self::PKG_UIV, $this->packages)) \sfmobile\vueapp\packages\uiv\UivAsset::register($this->view);
         if(in_array(self::PKG_VUE_BOOTSTRAP_DATETIME_PICKER, $this->packages)) \sfmobile\vueapp\packages\vue_bootstrap_datetime_picker\VueBootstrapDatetimePickerAsset::register($this->view);
+        if(in_array(self::PKG_VUE_SELECT, $this->packages)) \sfmobile\vueapp\packages\vue_select\VueSelectAsset::register($this->view);
 
         VueAsset::register($this->view);
 

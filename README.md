@@ -81,7 +81,7 @@ VueApp::begin([
     'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
     */
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV, VueApp::PKG_VUE_BOOTSTRAP_DATETIME_PICKER]
+    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV, VueApp::PKG_VUE_BOOTSTRAP_DATETIME_PICKER, VueApp::PKG_VUE_SELECT]
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}
@@ -124,8 +124,9 @@ var ___VUEAPP_APP_ID___ = new Vue({
     // add VueApp::PKG_VUEJS_DATEPICKER to 'packages' VueApp widget config
     // Refer to https://github.com/charliekassel/vuejs-datepicker
     components: {
-        vuejsDatepicker                                 // using VueJsDatePicker
-        "date-picker": VueBootstrapDatetimePicker       // using VueBootstrapDatetimePicker - https://github.com/ankurk91/vue-bootstrap-datetimepicker
+        vuejsDatepicker,                                 // using VueJsDatePicker
+        "date-picker": VueBootstrapDatetimePicker,       // using VueBootstrapDatetimePicker - https://github.com/ankurk91/vue-bootstrap-datetimepicker
+        'v-select' : vSelect                             // using VueSelect - https://vue-select.org/guide/install.html#yarn-npm
     },
 
     data: {

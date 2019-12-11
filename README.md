@@ -128,7 +128,7 @@ var ___VUEAPP_APP_ID___ = new Vue({
     components: {
         vuejsDatepicker,                                 // using VueJsDatePicker
         "date-picker": VueBootstrapDatetimePicker,       // using VueBootstrapDatetimePicker - https://github.com/ankurk91/vue-bootstrap-datetimepicker
-        'v-select' : vSelect                             // using VueSelect - https://vue-select.org/guide/install.html#yarn-npm
+        'v-select' : VueSelect.VueSelect                             // using VueSelect - https://vue-select.org/guide/install.html#yarn-npm
     },
 
     data: {

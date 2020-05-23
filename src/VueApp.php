@@ -2,7 +2,7 @@
 
 /**
  * @package yii2-vueapp
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 namespace sfmobile\vueapp;
@@ -73,9 +73,15 @@ class VueApp extends Widget
     public $tplFiles = [];
 
     /**
+     * @deprecated Use assets property
      * packages to load from assets
      */
     public $packages = [ self::PKG_AXIOS ];
+
+    /**
+     * assets to load
+     */
+    public $assets = [];
 
     /**
      * Position registration js file. Default is View::POS_READY
@@ -135,13 +141,23 @@ class VueApp extends Widget
 
         $this->checkInit();
 
-        // Load packages
-        if(in_array(self::PKG_AXIOS, $this->packages)) \sfmobile\vueapp\packages\axios\AxiosAsset::register($this->view);
-        if(in_array(self::PKG_MOMENT, $this->packages)) \sfmobile\vueapp\packages\moment\MomentAsset::register($this->view);
-        if(in_array(self::PKG_VUEJS_DATEPICKER, $this->packages)) \sfmobile\vueapp\packages\vuejs_datepicker\VueJsDatepickerAsset::register($this->view);
-        if(in_array(self::PKG_UIV, $this->packages)) \sfmobile\vueapp\packages\uiv\UivAsset::register($this->view);
-        if(in_array(self::PKG_VUE_BOOTSTRAP_DATETIME_PICKER, $this->packages)) \sfmobile\vueapp\packages\vue_bootstrap_datetime_picker\VueBootstrapDatetimePickerAsset::register($this->view);
-        if(in_array(self::PKG_VUE_SELECT, $this->packages)) \sfmobile\vueapp\packages\vue_select\VueSelectAsset::register($this->view);
+        if(($this->assets != null)&&(is_array($this->assets))&&(count($this->assets)>0))
+        {
+            foreach($this->assets as $asset)
+            {
+                $asset::register($this->view);
+            }
+        }
+        else
+        {
+            // Load packages
+            if(in_array(self::PKG_AXIOS, $this->packages)) \sfmobile\vueapp\packages\axios\AxiosAsset::register($this->view);
+            if(in_array(self::PKG_MOMENT, $this->packages)) \sfmobile\vueapp\packages\moment\MomentAsset::register($this->view);
+            if(in_array(self::PKG_VUEJS_DATEPICKER, $this->packages)) \sfmobile\vueapp\packages\vuejs_datepicker\VueJsDatepickerAsset::register($this->view);
+            if(in_array(self::PKG_UIV, $this->packages)) \sfmobile\vueapp\packages\uiv\UivAsset::register($this->view);
+            if(in_array(self::PKG_VUE_BOOTSTRAP_DATETIME_PICKER, $this->packages)) \sfmobile\vueapp\packages\vue_bootstrap_datetime_picker\VueBootstrapDatetimePickerAsset::register($this->view);
+            if(in_array(self::PKG_VUE_SELECT, $this->packages)) \sfmobile\vueapp\packages\vue_select\VueSelectAsset::register($this->view);
+        }
 
         VueAsset::register($this->view);
 

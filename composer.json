@@ -7,8 +7,7 @@
     "authors": [
         {
             "name": "Fabrizio Caldarelli",
-            "email": "fabriziocaldarelli@negusweb.it",
-            "homepage": "http://www.negusweb.it"
+            "email": "fabrizio.caldarelli@gmail.com"
         }
     ],
     "require": {
@@ -27,13 +26,7 @@
     },    
     "autoload": {
         "psr-4": {
-            "sfmobile\\vueapp\\": "src",
-            "sfmobile\\vueapp\\packages\\axios\\": "packages\\axios\\src",
-            "sfmobile\\vueapp\\packages\\moment\\": "packages\\moment\\src",
-            "sfmobile\\vueapp\\packages\\vuejs_datepicker\\": "packages\\vuejs_datepicker\\src",
-            "sfmobile\\vueapp\\packages\\uiv\\": "packages\\uiv\\src",
-            "sfmobile\\vueapp\\packages\\vue_bootstrap_datetime_picker\\": "packages\\vue_bootstrap_datetime_picker\\src",
-            "sfmobile\\vueapp\\packages\\vue_select\\": "packages\\vue_select\\src"
+            "sfmobile\\vueapp\\": "src"
         }
     },   
     "autoload-dev": {

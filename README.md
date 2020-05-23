@@ -288,9 +288,9 @@ var vueAppTest = new Vue({
 
                 // Taken from: https://github.com/sindresorhus/decamelize/blob/master/index.js
                 var attr = k
-                    .replace(/([\p{Lowercase_Letter}\d])(\p{Uppercase_Letter})/gu, `$1-$2`)
-                    .replace(/(\p{Lowercase_Letter}+)(\p{Uppercase_Letter}[\p{Lowercase_Letter}\d]+)/gu, `$1-$2`)
-                    .toLowerCase();
+                .replace(/([a-z\d])([A-Z])/g, '$1-$2')
+                .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1-$2')
+                .toLowerCase();
 
                 console.log(k, attr);
                 if (this.$el.attributes[attr] != undefined) {

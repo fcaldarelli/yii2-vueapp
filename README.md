@@ -81,7 +81,13 @@ VueApp::begin([
     'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
     */
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV, VueApp::PKG_VUE_BOOTSTRAP_DATETIME_PICKER, VueApp::PKG_VUE_SELECT]
+    'assets' => [ 
+      \sfmobile\vueapp\assets\axios\AxiosAsset::class, 
+      \sfmobile\vueapp\assets\moment\MomentAsset::class, 
+      \sfmobile\vueapp\assets\vue_select\VueSelectAsset::class 
+      \sfmobile\vueapp\assets\uid\UivAsset::class 
+      \sfmobile\vueapp\assets\vue_bootstrap_datetime_picker\VueBootstrapDatetimePickerAsset::class 
+    ]    
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}
@@ -104,6 +110,18 @@ VueApp::begin([
 ```
 
 The most important parameter is packages that loads embedded packages such as Axios and Moment.
+
+You have to install all packages declared in `assets` property:
+
+```
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-uiv "@dev"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vue-select "@dev"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vuejs-datepicker "@dev"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vue-bootstrap-datetime-picker "@dev"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-moment "@dev"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-axios "@dev"
+```
+
 
 **2) The Vue app js files**
 

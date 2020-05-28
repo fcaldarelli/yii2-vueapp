@@ -24,7 +24,13 @@ VueApp::begin([
     'cssFiles' => [ ... ],    // list of other css files, that have precedente over css contents path files
     'tplFiles' => [ ... ],    // list of other tpl files, that have precedente over tpl contents path files
     */
-    'packages' => [VueApp::PKG_AXIOS, VueApp::PKG_MOMENT, VueApp::PKG_VUEJS_DATEPICKER, VueApp::PKG_UIV]
+    'assets' => [
+        \sfmobile\vueapp\assets\axios\AxiosAsset::class,
+        \sfmobile\vueapp\assets\moment\MomentAsset::class,
+        \sfmobile\vueapp\assets\vuejs_datepicker\VueJsDatepickerAsset::class,
+        \sfmobile\vueapp\assets\uiv\UivAsset::class,
+        \sfmobile\vueapp\assets\vue_select\VueSelectAsset::class,
+    ]    
 ]);
 ?>
     kParam1: {{ propsApp.kParam1 }}

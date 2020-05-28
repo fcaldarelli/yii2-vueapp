@@ -22,13 +22,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp "@dev"
+php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp "^1.0"
 ```
 
 or add
 
 ```
-"fabriziocaldarelli/yii2-vueapp": "@dev"
+"fabriziocaldarelli/yii2-vueapp": "^1.0"
 ```
 
 to the require section of your `composer.json` file.
@@ -114,12 +114,12 @@ The most important parameter is packages that loads embedded packages such as Ax
 You have to install all packages declared in `assets` property:
 
 ```
-$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-uiv "@dev"
-$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vue-select "@dev"
-$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vuejs-datepicker "@dev"
-$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vue-bootstrap-datetime-picker "@dev"
-$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-moment "@dev"
-$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-axios "@dev"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-uiv "^1.0"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vue-select "^1.0"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vuejs-datepicker "^1.0"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-vue-bootstrap-datetime-picker "^1.0"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-moment "^1.0"
+$ php composer.phar require --prefer-dist fabriziocaldarelli/yii2-vueapp-axios "^1.0"
 ```
 
 
@@ -199,16 +199,16 @@ var ___VUEAPP_APP_ID___ = new Vue({
 
                 // Taken from: https://github.com/sindresorhus/decamelize/blob/master/index.js
                 var attr = k
-                    .replace(/([\p{Lowercase_Letter}\d])(\p{Uppercase_Letter})/gu, `$1-$2`)
-                    .replace(/(\p{Lowercase_Letter}+)(\p{Uppercase_Letter}[\p{Lowercase_Letter}\d]+)/gu, `$1-$2`)
-                    .toLowerCase();
+                .replace(/([a-z\d])([A-Z])/g, '$1-$2')
+                .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1-$2')
+                .toLowerCase();
 
                 console.log(k, attr);
                 if (this.$el.attributes[attr] != undefined) {
                     this.propsApp[k] = this.$el.attributes[attr].value;
                 }
             }
-        },
+        }
 
         loadAtomicClock: function () {
 

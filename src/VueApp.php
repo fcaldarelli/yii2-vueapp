@@ -172,7 +172,7 @@ class VueApp extends Widget
             if(in_array(self::PKG_AXIOS, $this->packages)) \sfmobile\vueapp\assets\axios\AxiosAsset::register($this->view);
             if(in_array(self::PKG_MOMENT, $this->packages)) \sfmobile\vueapp\assets\moment\MomentAsset::register($this->view);
             if(in_array(self::PKG_VUEJS_DATEPICKER, $this->packages)) \sfmobile\vueapp\assets\vuejs_datepicker\VueJsDatepickerAsset::register($this->view);
-            if(in_array(self::PKG_UIV, $this->packages)) \sfmobile\vueapp\packages\uiv\UivAsset::register($this->view);
+            if(in_array(self::PKG_UIV, $this->packages)) \sfmobile\vueapp\assets\uiv\UivAsset::register($this->view);
             if(in_array(self::PKG_VUE_BOOTSTRAP_DATETIME_PICKER, $this->packages)) \sfmobile\vueapp\assets\vue_bootstrap_datetime_picker\VueBootstrapDatetimePickerAsset::register($this->view);
             if(in_array(self::PKG_VUE_SELECT, $this->packages)) \sfmobile\vueapp\assets\vue_select\VueSelectAsset::register($this->view);
         }
